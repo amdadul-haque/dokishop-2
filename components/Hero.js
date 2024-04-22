@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-const Hero = () => {
+const Hero = ({ product }) => {
   const amounts = [
     {
       value: 1,
@@ -27,12 +27,12 @@ const Hero = () => {
     setSelectedValue(value);
   };
 
-  const product = {
-    name: "Product 1",
-    color: "Black",
-    image: "https://dokishop.hr/proizvod/ducket-motociklisticke-rukavice-7189/images/640ec65da46de.jpeg",
-    sizes: ['L', 'XL', 'XXL']
-  };
+  // const product = {
+  //   name: "Product 1",
+  //   color: "Black",
+  //   image: "https://dokishop.hr/proizvod/ducket-motociklisticke-rukavice-7189/images/640ec65da46de.jpeg",
+  //   sizes: ['L', 'XL', 'XXL']
+  // };
 
   return (
     <div className='min-h-screen'>
@@ -76,7 +76,7 @@ const Hero = () => {
 };
 
 const ProductDetails = ({ product }) => {
-  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+  const [selectedSize, setSelectedSize] = useState(product?.attributes[0]?.options[0] || 'L');
 
   const handleSizeSelect = (size) => {
     setSelectedSize(size);
@@ -86,11 +86,11 @@ const ProductDetails = ({ product }) => {
     <div className='pt-5'>
       <h2>{product.name}</h2>
       <p>Color: {product.color}</p>
-      <img src={product.image} alt={product.name} className='w-[200px] h-[200px] border-2 rounded-xl my-5 border-black-0' />
+      <img src={product.images[0].src} alt={product.name} className='w-[200px] h-[200px] border-2 rounded-xl my-5 border-black-0' />
       <p>Selected Size: {selectedSize}</p>
       <div className='grid grid-cols-4 gap-3 mt-5'>
         {/* Available Sizes: */}
-        {product.sizes.map((size, index) => (
+        {product?.attributes[0]?.options.map((size, index) => (
           <button
             key={index}
             onClick={() => handleSizeSelect(size)}

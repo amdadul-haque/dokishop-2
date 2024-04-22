@@ -24,7 +24,7 @@ export default function ProductsPage({ perPage = 50 }) {
   return (
     <div>
       <div className="w-full bg-[#333] min-h-screen">
-        <div className="w-[520px] mx-auto px-4 py-10 bg-white">
+        <div className="max-w-screen-sm mx-auto px-4 py-10 bg-white">
           <Hero />
         </div>
       </div>
